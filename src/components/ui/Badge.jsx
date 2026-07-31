@@ -1,21 +1,27 @@
 import { cn } from '../../utils/cn'
 
-export const Badge = ({ children, variant = 'default', className = '' }) => {
+export const Badge = ({ children, variant = 'default', size = 'default', className = '' }) => {
   const variants = {
-    default: 'bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200 border-slate-200 dark:border-slate-700',
-    primary: 'bg-primary-50 text-primary-700 dark:bg-primary-950/60 dark:text-primary-300 border-primary-200 dark:border-primary-800',
-    available: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800',
-    occupied: 'bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 border-amber-200 dark:border-amber-800',
-    admin: 'bg-purple-50 text-purple-700 dark:bg-purple-950/60 dark:text-purple-300 border-purple-200 dark:border-purple-800',
-    employee: 'bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300 border-blue-200 dark:border-blue-800',
-    danger: 'bg-rose-50 text-rose-700 dark:bg-rose-950/60 dark:text-rose-300 border-rose-200 dark:border-rose-800',
+    default: 'bg-gray-100 text-slate-700 border-gray-200',
+    primary: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    available: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+    occupied: 'bg-orange-100 text-orange-800 border-orange-300',
+    admin: 'bg-purple-50 text-purple-700 border-purple-200',
+    employee: 'bg-blue-50 text-blue-700 border-blue-200',
+    danger: 'bg-rose-50 text-rose-700 border-rose-200',
+  }
+
+  const sizes = {
+    default: 'px-2.5 py-1 text-[10px]',
+    sm: 'px-1.5 py-0.5 text-[9px]',
   }
 
   return (
     <span
       className={cn(
-        'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border transition-colors',
+        'inline-flex items-center rounded-full font-bold border transition-colors shadow-sm',
         variants[variant] || variants.default,
+        sizes[size] || sizes.default,
         className
       )}
     >

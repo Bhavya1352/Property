@@ -1,18 +1,23 @@
+/* Import external CSS files */
+@import './styles/components.css';
+@import './styles/layout.css';
+@import './styles/utilities.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   * {
-    @apply border-slate-200 dark:border-slate-800;
+    @apply border-slate-200;
   }
   
   html {
-    color-scheme: light dark;
+    color-scheme: light;
   }
   
   body {
-    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased selection:bg-primary-500 selection:text-white transition-colors duration-200;
+    @apply bg-slate-50 text-slate-900 font-sans antialiased selection:bg-accent selection:text-white transition-colors duration-200;
   }
 }
 
@@ -23,14 +28,14 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-slate-100 dark:bg-slate-900;
+  @apply bg-slate-100;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 dark:bg-slate-700 rounded-full hover:bg-slate-400 dark:hover:bg-slate-600 transition-colors;
+  @apply bg-slate-300 rounded-full hover:bg-slate-400 transition-colors;
 }
 
 /* Glassmorphism helpers */
 .glass-panel {
-  @apply bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/80 dark:border-slate-800/80;
+  @apply bg-white/80 backdrop-blur-md border border-slate-200/80;
 }

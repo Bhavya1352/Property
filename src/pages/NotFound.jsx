@@ -1,13 +1,17 @@
 import { Link } from 'react-router-dom'
-import { Building2, Home, ArrowLeft } from 'lucide-react'
+import { Home, ArrowLeft } from 'lucide-react'
 import { Button } from '../components/ui/Button'
 
 export const NotFound = () => {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center p-4 text-center">
       <div className="space-y-4 max-w-md">
-        <div className="p-4 bg-primary-100 dark:bg-primary-950/60 text-primary-600 dark:text-primary-400 rounded-2xl w-16 h-16 mx-auto flex items-center justify-center">
-          <Building2 className="w-8 h-8" />
+        <div className="w-16 h-16 mx-auto flex items-center justify-center">
+          <img 
+            src="/logo.png" 
+            alt="PropHub Logo" 
+            className="h-12 w-auto"
+          />
         </div>
 
         <h1 className="text-7xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">404</h1>

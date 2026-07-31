@@ -52,7 +52,7 @@ const initializeProperties = () => {
         description: 'Stunning waterfront views with premium amenities including gym, pool, and concierge service.',
         bedrooms: 2,
         bathrooms: 2,
-        image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
         createdAt: '2024-01-05',
       },
       {
@@ -65,7 +65,7 @@ const initializeProperties = () => {
         description: 'Beautifully restored historic brownstone with original details, private garden, and off-street parking.',
         bedrooms: 3,
         bathrooms: 2.5,
-        image: 'https://images.unsplash.com/photo-1570129477492-45a003537e1f?w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1600596542815-60c37c6525fa?w=800&q=80',
         createdAt: '2024-01-02',
       },
       {
@@ -78,7 +78,7 @@ const initializeProperties = () => {
         description: 'Trendy loft with exposed beams, large windows, and open plan living. In the heart of SoHo\'s best restaurants and galleries.',
         bedrooms: 2,
         bathrooms: 2,
-        image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80',
         createdAt: '2023-12-28',
       },
     ]

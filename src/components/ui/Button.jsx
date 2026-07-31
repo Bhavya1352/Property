@@ -13,20 +13,20 @@ export const Button = forwardRef(({
   type = 'button',
   ...props
 }, ref) => {
-  const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed select-none active:scale-[0.98]'
+  const baseStyles = 'btn inline-flex items-center justify-center font-medium transition-all duration-200 rounded-[12px] focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed select-none active:scale-[0.98]'
   
   const variants = {
-    primary: 'bg-primary-600 hover:bg-primary-700 text-white focus:ring-primary-500 shadow-sm hover:shadow dark:bg-primary-500 dark:hover:bg-primary-600',
-    secondary: 'bg-slate-100 hover:bg-slate-200 text-slate-900 focus:ring-slate-400 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-100',
-    outline: 'border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800/60 focus:ring-slate-400',
-    ghost: 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:ring-slate-400',
-    danger: 'bg-rose-600 hover:bg-rose-700 text-white focus:ring-rose-500 shadow-sm dark:bg-rose-500 dark:hover:bg-rose-600',
+    primary: 'btn--primary bg-emerald-600 hover:bg-emerald-700 text-white focus:ring-emerald-500 shadow-sm hover:shadow',
+    secondary: 'btn--secondary bg-gray-100 hover:bg-gray-200 text-slate-900 focus:ring-gray-400',
+    outline: 'btn--outline border border-gray-300 text-slate-700 hover:bg-gray-50 focus:ring-gray-400',
+    ghost: 'btn--ghost text-slate-600 hover:bg-gray-100 focus:ring-gray-400',
+    danger: 'btn--danger bg-rose-600 hover:bg-rose-700 text-white focus:ring-rose-500 shadow-sm',
   }
 
   const sizes = {
-    sm: 'px-3 py-1.5 text-xs gap-1.5',
-    md: 'px-4 py-2 text-sm gap-2',
-    lg: 'px-5 py-2.5 text-base gap-2',
+    sm: 'btn--sm px-2 xs:px-3 py-1 xs:py-1.5 text-[10px] xs:text-xs gap-1 xs:gap-1.5',
+    md: 'btn--md px-3 xs:px-4 py-1.5 xs:py-2 text-xs xs:text-sm gap-1.5 xs:gap-2',
+    lg: 'btn--lg px-4 xs:px-5 py-2 xs:py-2.5 text-sm xs:text-base gap-1.5 xs:gap-2',
   }
 
   return (
@@ -38,7 +38,7 @@ export const Button = forwardRef(({
         baseStyles,
         variants[variant],
         sizes[size],
-        fullWidth && 'w-full',
+        fullWidth && 'btn--full-width w-full',
         className
       )}
       {...props}

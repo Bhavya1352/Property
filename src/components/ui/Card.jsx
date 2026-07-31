@@ -1,12 +1,19 @@
 import { cn } from '../../utils/cn'
 
-export const Card = ({ children, className = '', hover = false, glass = false, ...props }) => {
+export const Card = ({ children, className = '', hover = false, glass = false, variant = 'default', ...props }) => {
+  const variants = {
+    default: 'rounded-xl',
+    stats: 'rounded-[20px]',
+    property: 'rounded-2xl',
+  }
+
   return (
     <div
       className={cn(
-        'rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 transition-all duration-200 overflow-hidden',
-        hover && 'hover:shadow-lg hover:-translate-y-0.5 hover:border-slate-300 dark:hover:border-slate-700',
-        glass && 'glass-panel',
+        'card border border-gray-200 bg-white transition-all duration-200 overflow-hidden',
+        variants[variant] || variants.default,
+        hover && 'card--hover hover:shadow-lg hover:-translate-y-0.5 hover:border-gray-300',
+        glass && 'card--glass glass-panel',
         className
       )}
       {...props}
@@ -19,7 +26,7 @@ export const Card = ({ children, className = '', hover = false, glass = false, .
 export const CardHeader = ({ children, className = '', ...props }) => {
   return (
     <div
-      className={cn('px-6 py-4 border-b border-slate-100 dark:border-slate-800/80', className)}
+      className={cn('card__header px-6 py-4 border-b border-gray-200', className)}
       {...props}
     >
       {children}
@@ -29,7 +36,7 @@ export const CardHeader = ({ children, className = '', ...props }) => {
 
 export const CardBody = ({ children, className = '', ...props }) => {
   return (
-    <div className={cn('p-6', className)} {...props}>
+    <div className={cn('card__body p-6', className)} {...props}>
       {children}
     </div>
   )
@@ -38,7 +45,7 @@ export const CardBody = ({ children, className = '', ...props }) => {
 export const CardFooter = ({ children, className = '', ...props }) => {
   return (
     <div
-      className={cn('px-6 py-4 bg-slate-50/50 dark:bg-slate-800/30 border-t border-slate-100 dark:border-slate-800/80', className)}
+      className={cn('card__footer px-6 py-4 bg-gray-50 border-t border-gray-200', className)}
       {...props}
     >
       {children}

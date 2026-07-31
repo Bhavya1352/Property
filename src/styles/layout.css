@@ -1,0 +1,413 @@
+/* ============================================
+   LAYOUT STYLES - EXTERNAL CSS
+   ============================================ */
+
+/* ============================================
+   BASE LAYOUT
+   ============================================ */
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================
+   DASHBOARD LAYOUT
+   ============================================ */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.dashboard-layout__sidebar {
+  width: 18rem;
+  flex-shrink: 0;
+}
+
+.dashboard-layout__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+
+  .dashboard-layout__sidebar {
+    position: fixed;
+    z-index: 40;
+  }
+}
+
+/* ============================================
+   AUTH LAYOUT
+   ============================================ */
+.auth-layout {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  background-color: #1F2937;
+}
+
+@media (min-width: 376px) {
+  .auth-layout {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 481px) {
+  .auth-layout {
+    padding: 1.5rem;
+  }
+}
+
+.auth-layout__container {
+  width: 100%;
+  max-width: 28rem;
+}
+
+/* ============================================
+   CONTAINER
+   ============================================ */
+.container {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 0.75rem;
+}
+
+@media (min-width: 376px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+@media (min-width: 481px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+.container--sm {
+  max-width: 40rem;
+}
+
+.container--md {
+  max-width: 48rem;
+}
+
+.container--lg {
+  max-width: 64rem;
+}
+
+.container--xl {
+  max-width: 80rem;
+}
+
+/* ============================================
+   GRID SYSTEM
+   ============================================ */
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.grid--cols-1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.grid--cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid--cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Extra small devices (large phones, 376px - 480px) */
+@media (min-width: 376px) {
+  .grid--xs-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Small devices (tablets, 481px - 768px) */
+@media (min-width: 481px) {
+  .grid--sm-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid--sm-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Medium devices (large tablets, 769px - 1024px) */
+@media (min-width: 769px) {
+  .grid--md-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid--md-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid--md-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Large devices (small laptops, 1025px - 1366px) */
+@media (min-width: 1025px) {
+  .grid--lg-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid--lg-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid--lg-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Extra large devices (large laptops, 1367px - 1600px) */
+@media (min-width: 1367px) {
+  .grid--xl-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid--xl-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid--xl-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* 2XL devices (desktops, 1601px - 1920px) */
+@media (min-width: 1601px) {
+  .grid--2xl-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid--2xl-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid--2xl-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* 3XL devices (large screens, 1921px and up) */
+@media (min-width: 1921px) {
+  .grid--3xl-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid--3xl-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid--3xl-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ============================================
+   FLEX UTILITIES
+   ============================================ */
+.flex {
+  display: flex;
+}
+
+.flex--col {
+  flex-direction: column;
+}
+
+.flex--row {
+  flex-direction: row;
+}
+
+.flex--center {
+  align-items: center;
+  justify-content: center;
+}
+
+.flex--between {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex--start {
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.flex--end {
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.flex--wrap {
+  flex-wrap: wrap;
+}
+
+.flex--gap-1 {
+  gap: 0.25rem;
+}
+
+.flex--gap-2 {
+  gap: 0.5rem;
+}
+
+.flex--gap-3 {
+  gap: 0.75rem;
+}
+
+.flex--gap-4 {
+  gap: 1rem;
+}
+
+.flex--gap-6 {
+  gap: 1.5rem;
+}
+
+/* ============================================
+   SPACING UTILITIES
+   ============================================ */
+.space-y-1 > * + * {
+  margin-top: 0.25rem;
+}
+
+.space-y-2 > * + * {
+  margin-top: 0.5rem;
+}
+
+.space-y-3 > * + * {
+  margin-top: 0.75rem;
+}
+
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+.space-y-6 > * + * {
+  margin-top: 1.5rem;
+}
+
+.space-y-8 > * + * {
+  margin-top: 2rem;
+}
+
+.space-x-1 > * + * {
+  margin-left: 0.25rem;
+}
+
+.space-x-2 > * + * {
+  margin-left: 0.5rem;
+}
+
+.space-x-3 > * + * {
+  margin-left: 0.75rem;
+}
+
+.space-x-4 > * + * {
+  margin-left: 1rem;
+}
+
+/* ============================================
+   RESPONSIVE UTILITIES
+   ============================================ */
+.hidden {
+  display: none;
+}
+
+/* Extra small devices (phones, 320px - 375px) */
+@media (max-width: 375px) {
+  .hidden--xs {
+    display: none;
+  }
+}
+
+/* Small devices (large phones, 376px - 480px) */
+@media (max-width: 480px) {
+  .hidden--sm {
+    display: none;
+  }
+}
+
+/* Medium devices (tablets, 481px - 768px) */
+@media (max-width: 768px) {
+  .hidden--md {
+    display: none;
+  }
+}
+
+/* Large devices (large tablets, 769px - 1024px) */
+@media (max-width: 1024px) {
+  .hidden--lg {
+    display: none;
+  }
+}
+
+/* Extra large devices (small laptops, 1025px - 1366px) */
+@media (min-width: 1025px) {
+  .block--xl {
+    display: block;
+  }
+}
+
+/* 2XL devices (large laptops, 1367px - 1600px) */
+@media (min-width: 1367px) {
+  .block--2xl {
+    display: block;
+  }
+}
+
+/* 3XL devices (desktops, 1601px - 1920px) */
+@media (min-width: 1601px) {
+  .block--3xl {
+    display: block;
+  }
+}
+
+/* 4XL devices (large screens, 1921px and up) */
+@media (min-width: 1921px) {
+  .block--4xl {
+    display: block;
+  }
+}
+
+/* ============================================
+   DARK MODE LAYOUT
+   ============================================ */
+
+/* Light mode defaults */
+.light .auth-layout {
+  background-color: rgb(248 250 252);
+}
