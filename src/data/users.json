@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "email": "admin@property.com",
+    "password": "admin123",
+    "name": "Admin User",
+    "role": "admin",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=admin"
+  },
+  {
+    "id": "2",
+    "email": "employee@property.com",
+    "password": "employee123",
+    "name": "Employee User",
+    "role": "employee",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=employee"
+  }
+]
