@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,jsx}",
@@ -10,10 +11,15 @@ export default {
         primary: {
           50: '#f0f9ff',
           100: '#e0f2fe',
+          200: '#bae6fd',
+          300: '#7dd3fc',
+          400: '#38bdf8',
           500: '#0ea5e9',
           600: '#0284c7',
           700: '#0369a1',
+          800: '#075985',
           900: '#082f49',
+          950: '#031926',
         },
         slate: {
           50: '#f8fafc',
@@ -26,25 +32,32 @@ export default {
           700: '#334155',
           800: '#1e293b',
           900: '#0f172a',
+          950: '#020617',
+        },
+        emerald: {
+          50: '#ecfdf5',
+          100: '#d1fae5',
+          500: '#10b981',
+          600: '#059669',
+          700: '#047857',
+        },
+        amber: {
+          50: '#fffbeb',
+          100: '#fef3c7',
+          500: '#f59e0b',
+          600: '#d97706',
+          700: '#b45309',
         },
       },
-      backgroundColor: {
-        light: '#ffffff',
-        dark: '#0f172a',
-        'glass': 'rgba(255, 255, 255, 0.7)',
-      },
-      textColor: {
-        light: '#0f172a',
-        dark: '#f8fafc',
-      },
       boxShadow: {
-        soft: '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
-        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.1)',
+        soft: '0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03)',
+        card: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)',
+        glow: '0 0 15px -3px rgba(14, 165, 233, 0.3)',
+        'glass-light': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
+        'glass-dark': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
       },
       backdropBlur: {
-        sm: '4px',
-        md: '8px',
-        lg: '12px',
+        xs: '2px',
       },
     },
   },

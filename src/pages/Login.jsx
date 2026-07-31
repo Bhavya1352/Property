@@ -2,11 +2,12 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Building2, Mail, Lock } from 'lucide-react'
+import { Building2, Mail, Lock, ShieldCheck, UserCheck, Sun, Moon } from 'lucide-react'
 import { loginSchema } from '../utils/validation'
 import { authService } from '../services/authService'
 import { useAuth } from '../hooks/useAuth'
 import { useToast } from '../hooks/useToast'
+import { useTheme } from '../hooks/useTheme'
 import { Input } from '../components/ui/Input'
 import { Button } from '../components/ui/Button'
 import { Card, CardBody } from '../components/ui/Card'
@@ -15,11 +16,16 @@ import { Toast } from '../components/ui/Toast'
 export const Login = () => {
   const navigate = useNavigate()
   const { login } = useAuth()
+  const { isDark, toggleTheme } = useTheme()
   const { toast, showToast, hideToast } = useToast()
   const [loading, setLoading] = useState(false)
 
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm({
     resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: 'admin@property.com',
+      password: 'admin123',
+    },
   })
 
   const onSubmit = async (data) => {
@@ -29,38 +35,58 @@ export const Login = () => {
       if (result.success) {
         login(result.user)
         showToast(`Welcome back, ${result.user.name}!`, 'success')
-        setTimeout(() => navigate('/dashboard'), 500)
+        setTimeout(() => navigate('/dashboard'), 400)
       } else {
         showToast(result.error, 'error')
       }
     } catch (error) {
-      showToast('An error occurred. Please try again.', 'error')
+      showToast('An error occurred during authentication.', 'error')
     } finally {
       setLoading(false)
     }
   }
 
+  const fillDemo = (email, password) => {
+    setValue('email', email)
+    setValue('password', password)
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-primary-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex items-center justify-center p-4 relative transition-colors duration-200">
       <Toast toast={toast} onClose={hideToast} />
-      
-      <div className="w-full max-w-md">
-        {/* Logo */}
-        <div className="flex items-center justify-center mb-8">
-          <div className="p-3 bg-primary-600 rounded-xl">
-            <Building2 className="w-8 h-8 text-white" />
+
+      {/* Theme Toggle Top Right */}
+      <button
+        onClick={toggleTheme}
+        className="absolute top-5 right-5 p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 shadow-sm hover:scale-105 transition-all"
+        title="Toggle Theme"
+      >
+        {isDark ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-slate-600" />}
+      </button>
+
+      <div className="w-full max-w-md space-y-6">
+        {/* Branding Logo */}
+        <div className="flex flex-col items-center justify-center text-center space-y-2">
+          <div className="p-3.5 bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl shadow-glow text-white">
+            <Building2 className="w-9 h-9" />
           </div>
-          <div className="ml-3">
-            <h1 className="text-3xl font-bold text-slate-900">PropHub</h1>
-            <p className="text-sm text-slate-500">Property Management</p>
-          </div>
+          <h1 className="text-3xl font-extrabold tracking-tight">
+            Prop<span className="text-primary-600 dark:text-primary-400">Hub</span>
+          </h1>
+          <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+            Production Grade Property Management System
+          </p>
         </div>
 
-        <Card>
-          <CardBody className="space-y-6">
-            <div className="text-center">
-              <h2 className="text-2xl font-bold text-slate-900 mb-2">Welcome Back</h2>
-              <p className="text-slate-600 text-sm">Sign in to your account to continue</p>
+        <Card glass className="shadow-2xl">
+          <CardBody className="space-y-6 p-6 sm:p-8">
+            <div>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 text-center">
+                Sign In
+              </h2>
+              <p className="text-slate-500 dark:text-slate-400 text-xs text-center mt-1">
+                Enter your credentials to access your dashboard
+              </p>
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -76,40 +102,50 @@ export const Login = () => {
               <Input
                 label="Password"
                 type="password"
-                placeholder="Enter your password"
+                placeholder="Enter password"
                 icon={<Lock className="w-4 h-4" />}
                 error={errors.password?.message}
                 {...register('password')}
               />
 
               <Button type="submit" loading={loading} fullWidth size="lg">
-                Sign In
+                Sign In to Dashboard
               </Button>
             </form>
 
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-slate-200"></div>
+            {/* Quick Demo Login Preset Buttons */}
+            <div className="space-y-3 pt-2">
+              <div className="relative flex items-center justify-center">
+                <div className="w-full border-t border-slate-200 dark:border-slate-800" />
+                <span className="absolute bg-white dark:bg-slate-900 px-3 text-[10px] uppercase font-bold text-slate-400">
+                  Quick Demo Login
+                </span>
               </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-slate-500">Demo Credentials</span>
+
+              <div className="grid grid-cols-2 gap-2.5">
+                <button
+                  type="button"
+                  onClick={() => fillDemo('admin@property.com', 'admin123')}
+                  className="flex items-center justify-center gap-2 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-800/40 hover:border-primary-500 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-all"
+                >
+                  <ShieldCheck className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                  <span>Admin Demo</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => fillDemo('employee@property.com', 'employee123')}
+                  className="flex items-center justify-center gap-2 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-800/40 hover:border-primary-500 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-all"
+                >
+                  <UserCheck className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                  <span>Employee Demo</span>
+                </button>
               </div>
             </div>
 
-            <div className="bg-primary-50 rounded-lg p-4 space-y-2 text-sm">
-              <p className="font-semibold text-slate-900">Admin Account:</p>
-              <p className="text-slate-600">Email: <code className="font-mono bg-white px-2 py-1 rounded">admin@property.com</code></p>
-              <p className="text-slate-600">Password: <code className="font-mono bg-white px-2 py-1 rounded">admin123</code></p>
-
-              <p className="font-semibold text-slate-900 pt-2">Employee Account:</p>
-              <p className="text-slate-600">Email: <code className="font-mono bg-white px-2 py-1 rounded">employee@property.com</code></p>
-              <p className="text-slate-600">Password: <code className="font-mono bg-white px-2 py-1 rounded">employee123</code></p>
-            </div>
-
-            <p className="text-center text-slate-600 text-sm">
+            <p className="text-center text-xs text-slate-500 dark:text-slate-400">
               Don&apos;t have an account?{' '}
-              <Link to="/register" className="text-primary-600 font-semibold hover:text-primary-700">
-                Sign up
+              <Link to="/register" className="text-primary-600 dark:text-primary-400 font-bold hover:underline">
+                Create Account
               </Link>
             </p>
           </CardBody>

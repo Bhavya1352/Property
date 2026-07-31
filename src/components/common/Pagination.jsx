@@ -4,46 +4,60 @@ import { Button } from '../ui/Button'
 export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   if (totalPages <= 1) return null
 
-  const pages = []
-  for (let i = 1; i <= totalPages; i++) {
-    pages.push(i)
+  const getPageNumbers = () => {
+    const pages = []
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(i)
+    }
+    return pages
   }
 
   return (
-    <div className="flex items-center justify-center gap-2 mt-8">
-      <Button
-        variant="ghost"
-        size="sm"
-        disabled={currentPage === 1}
-        onClick={() => onPageChange(currentPage - 1)}
-      >
-        <ChevronLeft className="w-4 h-4" />
-      </Button>
+    <div className="flex items-center justify-between border-t border-slate-200 dark:border-slate-800 pt-6 mt-8">
+      <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+        Page <span className="font-bold text-slate-900 dark:text-slate-100">{currentPage}</span> of{' '}
+        <span className="font-bold text-slate-900 dark:text-slate-100">{totalPages}</span>
+      </p>
 
-      {pages.map(page => (
+      <div className="flex items-center gap-1.5">
         <Button
-          key={page}
-          variant={page === currentPage ? 'primary' : 'ghost'}
+          variant="outline"
           size="sm"
-          onClick={() => onPageChange(page)}
-          className={page === currentPage ? 'min-w-10' : ''}
+          disabled={currentPage === 1}
+          onClick={() => onPageChange(currentPage - 1)}
+          aria-label="Previous page"
         >
-          {page}
+          <ChevronLeft className="w-4 h-4 mr-1" />
+          Prev
         </Button>
-      ))}
 
-      <Button
-        variant="ghost"
-        size="sm"
-        disabled={currentPage === totalPages}
-        onClick={() => onPageChange(currentPage + 1)}
-      >
-        <ChevronRight className="w-4 h-4" />
-      </Button>
+        <div className="hidden sm:flex items-center gap-1">
+          {getPageNumbers().map((page) => (
+            <button
+              key={page}
+              onClick={() => onPageChange(page)}
+              className={`w-8 h-8 rounded-lg text-xs font-bold transition-all ${
+                currentPage === page
+                  ? 'bg-primary-600 text-white shadow-sm dark:bg-primary-500'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+              }`}
+            >
+              {page}
+            </button>
+          ))}
+        </div>
 
-      <span className="text-sm text-slate-600 ml-4">
-        Page {currentPage} of {totalPages}
-      </span>
+        <Button
+          variant="outline"
+          size="sm"
+          disabled={currentPage === totalPages}
+          onClick={() => onPageChange(currentPage + 1)}
+          aria-label="Next page"
+        >
+          Next
+          <ChevronRight className="w-4 h-4 ml-1" />
+        </Button>
+      </div>
     </div>
   )
 }

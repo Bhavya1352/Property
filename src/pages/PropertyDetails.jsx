@@ -1,16 +1,16 @@
+import { useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { ArrowLeft, Bed, Bath, MapPin, DollarSign, Edit, Trash2 } from 'lucide-react'
+import { ArrowLeft, Bed, Bath, MapPin, DollarSign, Edit3, Trash2, Calendar, ShieldCheck, CheckCircle2 } from 'lucide-react'
 import { DashboardLayout } from '../components/layout/DashboardLayout'
 import { Card, CardBody, CardHeader } from '../components/ui/Card'
 import { Badge } from '../components/ui/Badge'
 import { Button } from '../components/ui/Button'
 import { Breadcrumbs } from '../components/common/Breadcrumbs'
 import { ConfirmModal } from '../components/common/ConfirmModal'
-import { useState } from 'react'
+import { Toast } from '../components/ui/Toast'
 import { useProperty } from '../hooks/useProperty'
 import { useAuth } from '../hooks/useAuth'
 import { useToast } from '../hooks/useToast'
-import { Toast } from '../components/ui/Toast'
 import { propertyService } from '../services/propertyService'
 import { formatCurrency, formatDate, formatPropertyType, formatStatus } from '../utils/format'
 
@@ -27,10 +27,13 @@ export const PropertyDetails = () => {
   if (!property) {
     return (
       <DashboardLayout>
-        <div className="p-8 text-center">
-          <h1 className="text-2xl font-bold text-slate-900 mb-4">Property not found</h1>
+        <div className="p-12 text-center space-y-4">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+            Property Not Found
+          </h1>
+          <p className="text-slate-500 text-sm">The property listing you requested does not exist or was removed.</p>
           <Link to="/dashboard">
-            <Button>Back to Dashboard</Button>
+            <Button>Return to Dashboard</Button>
           </Link>
         </div>
       </DashboardLayout>
@@ -40,12 +43,13 @@ export const PropertyDetails = () => {
   const handleDelete = () => {
     deleteProperty(id)
     showToast('Property deleted successfully', 'success')
-    setTimeout(() => navigate('/dashboard'), 1000)
+    setTimeout(() => navigate('/dashboard'), 400)
   }
 
   return (
     <DashboardLayout>
       <Toast toast={toast} onClose={hideToast} />
+
       <ConfirmModal
         isOpen={deleteConfirm}
         title="Delete Property"
@@ -57,144 +61,148 @@ export const PropertyDetails = () => {
         onCancel={() => setDeleteConfirm(false)}
       />
 
-      <div className="p-4 md:p-8 space-y-6">
-        {/* Breadcrumbs */}
+      <div className="space-y-6 pb-12">
         <Breadcrumbs items={[{ label: 'Properties', path: '/dashboard' }, { label: property.title }]} />
 
-        {/* Back Button */}
-        <Link to="/dashboard">
-          <button className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium">
-            <ArrowLeft className="w-5 h-5" />
-            Back to Dashboard
-          </button>
-        </Link>
+        <div className="flex items-center justify-between">
+          <Link to="/dashboard">
+            <Button variant="ghost" size="sm">
+              <ArrowLeft className="w-4 h-4 mr-1" />
+              Back to Properties
+            </Button>
+          </Link>
 
-        {/* Property Image */}
-        <div className="relative h-96 rounded-lg overflow-hidden shadow-lg">
+          {user?.role === 'admin' && (
+            <div className="flex items-center gap-2">
+              <Link to={`/property/edit/${property.id}`}>
+                <Button variant="secondary" size="sm">
+                  <Edit3 className="w-4 h-4 mr-1" />
+                  Edit Property
+                </Button>
+              </Link>
+              <Button variant="danger" size="sm" onClick={() => setDeleteConfirm(true)}>
+                <Trash2 className="w-4 h-4 mr-1" />
+                Delete
+              </Button>
+            </div>
+          )}
+        </div>
+
+        {/* Featured Image */}
+        <div className="relative h-80 sm:h-96 rounded-2xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900">
           <img
             src={property.image}
             alt={property.title}
             className="w-full h-full object-cover"
+            onError={(e) => {
+              e.target.src = 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80'
+            }}
           />
-          <div className="absolute top-4 right-4">
-            <Badge variant={property.status}>
+          <div className="absolute top-4 right-4 flex gap-2">
+            <Badge variant={property.status} className="text-sm px-3 py-1 shadow-lg backdrop-blur-md">
               {formatStatus(property.status)}
             </Badge>
+          </div>
+          <div className="absolute bottom-4 left-4">
+            <span className="px-3 py-1 rounded-lg text-xs font-bold bg-slate-900/80 text-white backdrop-blur-md">
+              {formatPropertyType(property.type)}
+            </span>
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Main Content */}
+          {/* Main Info */}
           <div className="lg:col-span-2 space-y-6">
-            {/* Title and Location */}
             <Card>
               <CardBody className="space-y-4">
                 <div>
-                  <h1 className="text-3xl font-bold text-slate-900 mb-2">{property.title}</h1>
-                  <div className="flex items-center gap-2 text-slate-600 mb-4">
-                    <MapPin className="w-5 h-5 text-primary-600" />
-                    <span className="text-lg">{property.location}</span>
+                  <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-slate-100">
+                    {property.title}
+                  </h1>
+                  <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm mt-2">
+                    <MapPin className="w-4 h-4 text-primary-600 dark:text-primary-400" />
+                    <span>{property.location}</span>
                   </div>
-                  <Badge variant="primary">{formatPropertyType(property.type)}</Badge>
                 </div>
 
-                <p className="text-slate-700 leading-relaxed">{property.description}</p>
+                <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
+                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                    About Property
+                  </h4>
+                  <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed whitespace-pre-line">
+                    {property.description}
+                  </p>
+                </div>
               </CardBody>
             </Card>
 
-            {/* Property Details Grid */}
+            {/* Spec grid */}
             <div className="grid grid-cols-3 gap-4">
               <Card>
-                <CardBody className="text-center">
-                  <div className="flex items-center justify-center gap-2 mb-2">
-                    <Bed className="w-5 h-5 text-primary-600" />
-                    <span className="text-2xl font-bold text-slate-900">{property.bedrooms}</span>
-                  </div>
-                  <p className="text-sm text-slate-600">Bedrooms</p>
+                <CardBody className="text-center py-4">
+                  <Bed className="w-6 h-6 text-primary-600 dark:text-primary-400 mx-auto mb-1" />
+                  <p className="text-xl font-bold text-slate-900 dark:text-slate-100">{property.bedrooms}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Bedrooms</p>
                 </CardBody>
               </Card>
-
               <Card>
-                <CardBody className="text-center">
-                  <div className="flex items-center justify-center gap-2 mb-2">
-                    <Bath className="w-5 h-5 text-primary-600" />
-                    <span className="text-2xl font-bold text-slate-900">{property.bathrooms}</span>
-                  </div>
-                  <p className="text-sm text-slate-600">Bathrooms</p>
+                <CardBody className="text-center py-4">
+                  <Bath className="w-6 h-6 text-primary-600 dark:text-primary-400 mx-auto mb-1" />
+                  <p className="text-xl font-bold text-slate-900 dark:text-slate-100">{property.bathrooms}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Bathrooms</p>
                 </CardBody>
               </Card>
-
               <Card>
-                <CardBody className="text-center">
-                  <div className="flex items-center justify-center gap-2 mb-2">
-                    <DollarSign className="w-5 h-5 text-primary-600" />
-                    <span className="text-2xl font-bold text-slate-900">{(property.rent / 1000).toFixed(1)}k</span>
-                  </div>
-                  <p className="text-sm text-slate-600">Monthly Rent</p>
+                <CardBody className="text-center py-4">
+                  <DollarSign className="w-6 h-6 text-primary-600 dark:text-primary-400 mx-auto mb-1" />
+                  <p className="text-xl font-bold text-slate-900 dark:text-slate-100">{formatCurrency(property.rent)}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Monthly Rent</p>
                 </CardBody>
               </Card>
             </div>
           </div>
 
-          {/* Sidebar */}
+          {/* Right Summary Sidebar */}
           <div className="space-y-6">
-            {/* Rent Summary */}
             <Card>
-              <CardHeader className="bg-primary-50">
-                <h3 className="font-semibold text-slate-900">Rental Information</h3>
+              <CardHeader className="bg-slate-50 dark:bg-slate-800/50">
+                <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100">
+                  Financial Overview
+                </h3>
               </CardHeader>
-              <CardBody className="space-y-4">
+              <CardBody className="space-y-3 text-xs">
                 <div className="flex justify-between items-center">
-                  <span className="text-slate-600">Monthly Rent</span>
-                  <span className="text-2xl font-bold text-primary-600">{formatCurrency(property.rent)}</span>
+                  <span className="text-slate-500 dark:text-slate-400">Monthly Rent</span>
+                  <span className="font-bold text-slate-900 dark:text-slate-100 text-sm">{formatCurrency(property.rent)}</span>
                 </div>
-                <div className="flex justify-between items-center pt-4 border-t border-slate-200">
-                  <span className="text-slate-600">Annual Revenue</span>
-                  <span className="font-semibold text-slate-900">{formatCurrency(property.rent * 12)}</span>
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-500 dark:text-slate-400">Annual Revenue</span>
+                  <span className="font-bold text-slate-900 dark:text-slate-100">{formatCurrency(property.rent * 12)}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-500 dark:text-slate-400">Est. Security Deposit</span>
+                  <span className="font-bold text-slate-900 dark:text-slate-100">{formatCurrency(property.rent * 1.5)}</span>
                 </div>
               </CardBody>
             </Card>
 
-            {/* Property Info */}
             <Card>
-              <CardHeader>
-                <h3 className="font-semibold text-slate-900">Property Info</h3>
+              <CardHeader className="bg-slate-50 dark:bg-slate-800/50">
+                <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100">
+                  Metadata & Status
+                </h3>
               </CardHeader>
-              <CardBody className="space-y-3 text-sm">
-                <div>
-                  <p className="text-slate-600">Status</p>
-                  <p className="font-semibold text-slate-900 capitalize">{formatStatus(property.status)}</p>
+              <CardBody className="space-y-3 text-xs">
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-500 dark:text-slate-400">Property ID</span>
+                  <span className="font-mono text-slate-900 dark:text-slate-100 font-bold">#{property.id}</span>
                 </div>
-                <div>
-                  <p className="text-slate-600">Type</p>
-                  <p className="font-semibold text-slate-900">{formatPropertyType(property.type)}</p>
-                </div>
-                <div>
-                  <p className="text-slate-600">Listed Date</p>
-                  <p className="font-semibold text-slate-900">{formatDate(property.createdAt)}</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-500 dark:text-slate-400">Listed Date</span>
+                  <span className="font-semibold text-slate-900 dark:text-slate-100">{formatDate(property.createdAt)}</span>
                 </div>
               </CardBody>
             </Card>
-
-            {/* Actions */}
-            {user?.role === 'admin' && (
-              <div className="space-y-3">
-                <Link to={`/property/edit/${property.id}`} className="block">
-                  <Button variant="primary" fullWidth>
-                    <Edit className="w-4 h-4 mr-2" />
-                    Edit Property
-                  </Button>
-                </Link>
-                <Button
-                  variant="danger"
-                  fullWidth
-                  onClick={() => setDeleteConfirm(true)}
-                >
-                  <Trash2 className="w-4 h-4 mr-2" />
-                  Delete Property
-                </Button>
-              </div>
-            )}
           </div>
         </div>
       </div>

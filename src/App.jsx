@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { ThemeProvider } from './context/ThemeContext'
 import { AuthProvider } from './context/AuthContext'
 import { PropertyProvider } from './context/PropertyContext'
 import { ProtectedRoute } from './routes/ProtectedRoute'
@@ -12,43 +13,57 @@ import { NotFound } from './pages/NotFound'
 
 function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <PropertyProvider>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
-            
-            <Route path="/dashboard" element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            } />
-            
-            <Route path="/property/:id" element={
-              <ProtectedRoute>
-                <PropertyDetails />
-              </ProtectedRoute>
-            } />
-            
-            <Route path="/property/add" element={
-              <ProtectedRoute requiredRole="admin">
-                <AddProperty />
-              </ProtectedRoute>
-            } />
-            
-            <Route path="/property/edit/:id" element={
-              <ProtectedRoute requiredRole="admin">
-                <EditProperty />
-              </ProtectedRoute>
-            } />
-            
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </PropertyProvider>
-      </AuthProvider>
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <AuthProvider>
+          <PropertyProvider>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
+
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route
+                path="/property/:id"
+                element={
+                  <ProtectedRoute>
+                    <PropertyDetails />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route
+                path="/property/add"
+                element={
+                  <ProtectedRoute requiredRole="admin">
+                    <AddProperty />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route
+                path="/property/edit/:id"
+                element={
+                  <ProtectedRoute requiredRole="admin">
+                    <EditProperty />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </PropertyProvider>
+        </AuthProvider>
+      </BrowserRouter>
+    </ThemeProvider>
   )
 }
 

@@ -1,38 +1,48 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { CheckCircle, AlertCircle, Info, X } from 'lucide-react'
+import { CheckCircle2, AlertCircle, Info, X } from 'lucide-react'
+import { cn } from '../../utils/cn'
 
 export const Toast = ({ toast, onClose }) => {
+  if (!toast?.show) return null
+
   const icons = {
-    success: <CheckCircle className="w-5 h-5" />,
-    error: <AlertCircle className="w-5 h-5" />,
-    info: <Info className="w-5 h-5" />,
+    success: <CheckCircle2 className="w-5 h-5 text-emerald-500" />,
+    error: <AlertCircle className="w-5 h-5 text-rose-500" />,
+    info: <Info className="w-5 h-5 text-primary-500" />,
   }
 
-  const colors = {
-    success: 'bg-green-50 border-green-200 text-green-800',
-    error: 'bg-red-50 border-red-200 text-red-800',
-    info: 'bg-blue-50 border-blue-200 text-blue-800',
+  const styles = {
+    success: 'border-emerald-200 dark:border-emerald-800/60 bg-emerald-50/90 dark:bg-emerald-950/90 text-emerald-900 dark:text-emerald-100',
+    error: 'border-rose-200 dark:border-rose-800/60 bg-rose-50/90 dark:bg-rose-950/90 text-rose-900 dark:text-rose-100',
+    info: 'border-primary-200 dark:border-primary-800/60 bg-primary-50/90 dark:bg-primary-950/90 text-primary-900 dark:text-primary-100',
   }
 
   return (
     <AnimatePresence>
-      {toast && (
-        <motion.div
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -100, opacity: 0 }}
-          className={`fixed top-4 right-4 flex items-center gap-3 px-4 py-3 rounded-lg border ${colors[toast.type] || colors.info} shadow-lg z-50`}
+      <motion.div
+        initial={{ opacity: 0, y: -20, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: -20, scale: 0.95 }}
+        className="fixed top-5 right-5 z-50 max-w-sm w-full"
+      >
+        <div
+          className={cn(
+            'flex items-center justify-between p-4 rounded-xl border backdrop-blur-md shadow-lg',
+            styles[toast.type] || styles.info
+          )}
         >
-          {icons[toast.type]}
-          <span className="text-sm font-medium">{toast.message}</span>
+          <div className="flex items-center gap-3">
+            {icons[toast.type] || icons.info}
+            <p className="text-sm font-medium">{toast.message}</p>
+          </div>
           <button
             onClick={onClose}
-            className="ml-2 opacity-70 hover:opacity-100 transition-opacity"
+            className="p-1 rounded-lg hover:opacity-70 transition-opacity ml-4"
           >
             <X className="w-4 h-4" />
           </button>
-        </motion.div>
-      )}
+        </div>
+      </motion.div>
     </AnimatePresence>
   )
 }
