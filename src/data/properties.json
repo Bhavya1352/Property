@@ -9,7 +9,7 @@
     "description": "Beautiful penthouse with stunning city views, modern amenities, and premium finishes. Located in the heart of downtown with easy access to transportation.",
     "bedrooms": 3,
     "bathrooms": 2,
-    "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80",
     "createdAt": "2024-01-15"
   },
   {
@@ -22,7 +22,7 @@
     "description": "Spacious family home with a large backyard, perfect for families. Recently renovated with new kitchen and bathrooms.",
     "bedrooms": 4,
     "bathrooms": 3,
-    "image": "https://images.unsplash.com/photo-1570129477492-45a003537e1f?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80",
     "createdAt": "2024-01-10"
   },
   {
@@ -35,7 +35,7 @@
     "description": "Perfect for young professionals or artists. Open concept layout with high ceilings and exposed brick.",
     "bedrooms": 1,
     "bathrooms": 1,
-    "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&q=80",
     "createdAt": "2024-01-08"
   },
   {
@@ -48,7 +48,7 @@
     "description": "Stunning waterfront views with premium amenities including gym, pool, and concierge service.",
     "bedrooms": 2,
     "bathrooms": 2,
-    "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80",
     "createdAt": "2024-01-05"
   },
   {
@@ -61,7 +61,7 @@
     "description": "Beautifully restored historic brownstone with original details, private garden, and off-street parking.",
     "bedrooms": 3,
     "bathrooms": 2.5,
-    "image": "https://images.unsplash.com/photo-1570129477492-45a003537e1f?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=800&q=80",
     "createdAt": "2024-01-02"
   },
   {

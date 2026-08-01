@@ -13,14 +13,14 @@ export const Button = forwardRef(({
   type = 'button',
   ...props
 }, ref) => {
-  const baseStyles = 'btn inline-flex items-center justify-center font-medium transition-all duration-200 rounded-[12px] focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed select-none active:scale-[0.98]'
+  const baseStyles = 'btn inline-flex items-center justify-center font-medium transition-all duration-300 ease-in-out rounded-[12px] focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed select-none active:scale-[0.97] hover:scale-[1.02]'
   
   const variants = {
-    primary: 'btn--primary bg-emerald-600 hover:bg-emerald-700 text-white focus:ring-emerald-500 shadow-sm hover:shadow',
-    secondary: 'btn--secondary bg-gray-100 hover:bg-gray-200 text-slate-900 focus:ring-gray-400',
-    outline: 'btn--outline border border-gray-300 text-slate-700 hover:bg-gray-50 focus:ring-gray-400',
-    ghost: 'btn--ghost text-slate-600 hover:bg-gray-100 focus:ring-gray-400',
-    danger: 'btn--danger bg-rose-600 hover:bg-rose-700 text-white focus:ring-rose-500 shadow-sm',
+    primary: 'btn--primary bg-emerald-600 hover:bg-emerald-700 text-white focus:ring-emerald-500 shadow-sm hover:shadow-md hover:shadow-emerald-500/20',
+    secondary: 'btn--secondary bg-gray-100 hover:bg-gray-200 text-slate-900 focus:ring-gray-400 hover:shadow-sm',
+    outline: 'btn--outline border border-gray-300 text-slate-700 hover:bg-gray-50 hover:border-gray-400 focus:ring-gray-400',
+    ghost: 'btn--ghost text-slate-600 hover:bg-gray-100 hover:text-slate-900 focus:ring-gray-400',
+    danger: 'btn--danger bg-rose-600 hover:bg-rose-700 text-white focus:ring-rose-500 shadow-sm hover:shadow-md hover:shadow-rose-500/20',
   }
 
   const sizes = {

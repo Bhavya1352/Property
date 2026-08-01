@@ -12,24 +12,38 @@ import { propertyService } from '../services/propertyService'
 export const EditProperty = () => {
   const { id } = useParams()
   const navigate = useNavigate()
-  const { updateProperty } = useProperty()
+  const { updateProperty, loading } = useProperty()
   const { toast, showToast, hideToast } = useToast()
-  const [loading, setLoading] = useState(false)
+  const [formLoading, setFormLoading] = useState(false)
 
   const property = propertyService.getById(id)
+
+  if (loading) {
+    return (
+      <DashboardLayout>
+        <div className="p-6 xs:p-8 sm:p-12 text-center space-y-4">
+          <div className="w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <p className="text-slate-500 text-sm">Loading property details...</p>
+        </div>
+      </DashboardLayout>
+    )
+  }
 
   if (!property) {
     return (
       <DashboardLayout>
-        <div className="p-12 text-center">
-          <h1 className="text-xl font-bold">Property Not Found</h1>
+        <div className="p-6 xs:p-8 sm:p-12 text-center space-y-4">
+          <h1 className="text-xl xs:text-2xl font-bold text-slate-900 dark:text-slate-100">
+            Property Not Found
+          </h1>
+          <p className="text-slate-500 text-[10px] xs:text-sm">The property listing you requested does not exist or was removed.</p>
         </div>
       </DashboardLayout>
     )
   }
 
   const handleSubmit = (data) => {
-    setLoading(true)
+    setFormLoading(true)
     try {
       updateProperty(id, data)
       showToast('Property updated successfully!', 'success')
@@ -37,7 +51,7 @@ export const EditProperty = () => {
     } catch (error) {
       showToast('Failed to update property.', 'error')
     } finally {
-      setLoading(false)
+      setFormLoading(false)
     }
   }
 
@@ -62,7 +76,7 @@ export const EditProperty = () => {
             <PropertyForm
               initialValues={property}
               onSubmit={handleSubmit}
-              loading={loading}
+              loading={formLoading}
               onCancel={() => navigate('/dashboard')}
             />
           </CardBody>

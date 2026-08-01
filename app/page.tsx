@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import './auth-page.css'
 
 export default function AuthPage() {
   const [email, setEmail] = useState('')
@@ -127,9 +128,7 @@ export default function AuthPage() {
           {/* Background Image with Overlay */}
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-[#131C2E]/70 to-emerald-900/20"></div>
-            <div className="absolute inset-0 opacity-20" style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
-            }}></div>
+            <div className="noise-texture"></div>
             
             {/* Luxury Building Illustration */}
             <div className="absolute inset-0 flex items-center justify-center">
@@ -140,9 +139,9 @@ export default function AuthPage() {
                 <div className="absolute bottom-0 right-1/3 w-56 h-72 bg-gradient-to-t from-slate-700/30 to-transparent rounded-t-2xl"></div>
                 
                 {/* Window lights */}
-                <div className="absolute bottom-32 left-1/2 -translate-x-1/2 grid grid-cols-4 gap-2">
+                <div className="window-lights-grid">
                   {[...Array(8)].map((_, i) => (
-                    <div key={i} className="w-3 h-4 bg-[#10B981]/30 rounded-sm animate-pulse" style={{ animationDelay: `${i * 0.2}s` }}></div>
+                    <div key={i} className={`window-light window-light-delay-${i}`}></div>
                   ))}
                 </div>
               </div>

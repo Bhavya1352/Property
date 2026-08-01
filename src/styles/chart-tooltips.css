@@ -1,0 +1,236 @@
+/* ============================================
+   CHART TOOLTIPS & DYNAMIC STYLES
+   ============================================ */
+
+/* Chart Tooltip Positioning */
+.chart-tooltip {
+  position: absolute;
+  background-color: rgb(15, 23, 42);
+  color: white;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgb(51, 65, 85);
+  pointer-events: none;
+  font-size: 0.75rem;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+}
+
+.dark .chart-tooltip {
+  background-color: white;
+  color: rgb(15, 23, 42);
+  border-color: rgb(226, 232, 240);
+}
+
+.chart-tooltip__day {
+  font-weight: 600;
+  color: rgb(203, 213, 225);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  margin-bottom: 0.25rem;
+}
+
+.dark .chart-tooltip__day {
+  color: rgb(71, 85, 105);
+}
+
+.chart-tooltip__revenue {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.chart-tooltip__visitors {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  color: rgb(203, 213, 225);
+}
+
+.dark .chart-tooltip__visitors {
+  color: rgb(71, 85, 105);
+}
+
+/* Bar Chart - Progress Bars with Dynamic Width */
+.progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 1s ease-out;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.progress-bar--animated {
+  animation: progressSlide 1s ease-out forwards;
+}
+
+@keyframes progressSlide {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--progress-width);
+  }
+}
+
+/* Vertical Bar Chart - Column Heights with Dynamic Animation */
+.vertical-bar {
+  width: 100%;
+  background: linear-gradient(to top, rgb(147, 51, 234), rgb(168, 85, 247), rgb(236, 72, 153));
+  border-radius: 0.125rem;
+  transition: height 1s ease-out;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.vertical-bar--animated {
+  animation: barGrow 1s ease-out forwards;
+}
+
+@keyframes barGrow {
+  from {
+    height: 0%;
+  }
+  to {
+    height: var(--bar-height);
+  }
+}
+
+/* Chart SVG Styling */
+.chart-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.chart-grid-line {
+  stroke: rgb(226, 232, 240);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+.dark .chart-grid-line {
+  stroke: rgb(51, 65, 85);
+}
+
+.chart-area-fill {
+  fill: url(#chartGradient);
+}
+
+.chart-line {
+  fill: none;
+  stroke: rgb(16, 185, 129);
+  stroke-width: 2.5;
+}
+
+.chart-point {
+  transition: all 0.15s ease;
+}
+
+.chart-point--active {
+  fill: rgb(5, 150, 105);
+  stroke: white;
+  stroke-width: 2;
+}
+
+.chart-point--inactive {
+  fill: white;
+  stroke: rgb(16, 185, 129);
+  stroke-width: 2;
+}
+
+.chart-axis-label {
+  fill: rgb(100, 116, 139);
+  font-weight: 500;
+  font-size: 10px;
+  user-select: none;
+}
+
+.dark .chart-axis-label {
+  fill: rgb(148, 163, 184);
+}
+
+/* Circular Progress Ring */
+.progress-ring__circle {
+  transition: stroke-dashoffset 0.5s ease;
+  transform-origin: center;
+}
+
+.progress-ring__background {
+  stroke: rgb(226, 232, 240);
+}
+
+.dark .progress-ring__background {
+  stroke: rgb(51, 65, 85);
+}
+
+/* Responsive Chart Containers */
+.chart-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 600 / 220;
+  min-height: 200px;
+  background-color: white;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  border: 1px solid rgb(226, 232, 240);
+}
+
+.dark .chart-container {
+  background-color: rgb(30, 41, 59);
+  border-color: rgb(51, 65, 85);
+}
+
+/* Bar Container for Quarterly Reports */
+.bar-container {
+  position: relative;
+  width: 100%;
+  background-color: rgb(226, 232, 240);
+  border-radius: 9999px;
+  height: 0.5rem;
+  overflow: hidden;
+}
+
+.dark .bar-container {
+  background-color: rgb(51, 65, 85);
+}
+
+/* Mini Chart Container for Performance Metrics */
+.mini-chart {
+  height: 6rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.mini-chart__bar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mini-chart__column {
+  width: 100%;
+  background: linear-gradient(to top, rgb(147, 51, 234), rgb(168, 85, 247), rgb(236, 72, 153));
+  border-radius: 0.125rem;
+  transition: height 1s ease-out;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.mini-chart__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgb(71, 85, 105);
+}
+
+.dark .mini-chart__label {
+  color: rgb(148, 163, 184);
+}

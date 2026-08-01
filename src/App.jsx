@@ -10,6 +10,8 @@ import { PropertyDetails } from './pages/PropertyDetails'
 import { AddProperty } from './pages/AddProperty'
 import { EditProperty } from './pages/EditProperty'
 import { NotFound } from './pages/NotFound'
+import ModernPropertyCardDemo from './components/property/ModernPropertyCardDemo'
+import { SalesPerformanceDashboardDemo } from './components/dashboard/SalesPerformanceDashboardDemo'
 
 function App() {
   return (
@@ -57,6 +59,10 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+
+              {/* Demo routes */}
+              <Route path="/demo/modern-card" element={<ModernPropertyCardDemo />} />
+              <Route path="/demo/sales-dashboard" element={<SalesPerformanceDashboardDemo />} />
 
               <Route path="*" element={<NotFound />} />
             </Routes>

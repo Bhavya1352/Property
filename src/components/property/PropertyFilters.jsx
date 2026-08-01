@@ -39,15 +39,15 @@ export const PropertyFilters = ({ viewMode = 'grid', onViewChange }) => {
   const isFiltered = searchQuery !== '' || filters.type !== 'all' || filters.status !== 'all' || sortBy !== 'newest'
 
   return (
-    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl xs:rounded-2xl p-3 xs:p-4 sm:p-5 shadow-sm space-y-3 xs:space-y-4">
+    <div className="sticky top-14 sm:top-16 z-20 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 rounded-lg xs:rounded-xl sm:rounded-2xl p-2.5 xs:p-3.5 sm:p-4 lg:p-5 shadow-md space-y-2 xs:space-y-3 sm:space-y-4 transition-all">
       {/* Top Search and Controls */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 xs:gap-3">
+      <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-1.5 xs:gap-2 sm:gap-3">
         {/* Search */}
         <Input
           placeholder="Search by title or location..."
           value={searchQuery}
           onChange={(e) => updateSearch(e.target.value)}
-          icon={<Search className="w-3.5 xs:w-4 h-3.5 xs:h-4" />}
+          icon={<Search className="w-3 xs:w-3.5 sm:w-4 h-3 xs:h-3.5 sm:h-4" />}
         />
 
         {/* Type Filter */}
@@ -73,8 +73,8 @@ export const PropertyFilters = ({ viewMode = 'grid', onViewChange }) => {
       </div>
 
       {/* Filter Stats & Actions Footer */}
-      <div className="flex flex-wrap items-center justify-between gap-2 xs:gap-3 pt-2 xs:pt-3 border-t border-slate-100 dark:border-slate-800 text-[10px] xs:text-xs">
-        <div className="flex items-center gap-1.5 xs:gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-1.5 xs:gap-2 sm:gap-3 pt-1.5 xs:pt-2 sm:pt-3 border-t border-slate-100 dark:border-slate-800 text-[9px] xs:text-[10px] sm:text-xs">
+        <div className="flex items-center gap-1 xs:gap-1.5 sm:gap-2">
           <span className="font-bold text-slate-700 dark:text-slate-300">
             Showing {properties.length} Properties
           </span>
@@ -83,9 +83,9 @@ export const PropertyFilters = ({ viewMode = 'grid', onViewChange }) => {
               variant="ghost"
               size="sm"
               onClick={handleReset}
-              className="text-slate-500 hover:text-rose-600 dark:text-slate-400 py-0.5 px-1.5 xs:px-2 h-auto text-[10px] xs:text-xs"
+              className="text-slate-500 hover:text-rose-600 dark:text-slate-400 py-0.5 px-1 xs:px-1.5 sm:px-2 h-auto text-[9px] xs:text-[10px] sm:text-xs"
             >
-              <RotateCcw className="w-2.5 xs:w-3 h-2.5 xs:h-3 mr-0.5 xs:mr-1" />
+              <RotateCcw className="w-2 xs:w-2.5 sm:w-3 h-2 xs:h-2.5 sm:h-3 mr-0.5 xs:mr-1" />
               <span className="hidden xs:inline">Reset Filters</span>
               <span className="xs:hidden">Reset</span>
             </Button>
@@ -103,7 +103,7 @@ export const PropertyFilters = ({ viewMode = 'grid', onViewChange }) => {
             }`}
             title="Grid View"
           >
-            <LayoutGrid className="w-3.5 xs:w-4 h-3.5 xs:h-4" />
+            <LayoutGrid className="w-3 xs:w-3.5 sm:w-4 h-3 xs:h-3.5 sm:h-4" />
           </button>
           <button
             onClick={() => onViewChange && onViewChange('table')}
@@ -114,7 +114,7 @@ export const PropertyFilters = ({ viewMode = 'grid', onViewChange }) => {
             }`}
             title="Table View"
           >
-            <List className="w-3.5 xs:w-4 h-3.5 xs:h-4" />
+            <List className="w-3 xs:w-3.5 sm:w-4 h-3 xs:h-3.5 sm:h-4" />
           </button>
         </div>
       </div>

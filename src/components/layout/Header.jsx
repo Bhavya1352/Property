@@ -13,7 +13,7 @@ export const Header = ({ onMenuClick }) => {
         <div className="flex items-center gap-2 xs:gap-3 flex-1">
           <button
             onClick={onMenuClick}
-            className="lg:hidden p-1.5 xs:p-2 text-slate-600 hover:bg-slate-100 rounded-xl transition-colors"
+            className="lg:hidden p-1.5 xs:p-2 text-slate-600 hover:bg-slate-100 rounded-xl transition-all duration-300 ease-in-out hover:scale-105 active:scale-95"
             aria-label="Open navigation menu"
           >
             <Menu className="w-4 xs:w-5 h-4 xs:h-5" />
@@ -37,7 +37,7 @@ export const Header = ({ onMenuClick }) => {
                 placeholder="Search properties, tenants, locations..."
                 value={searchQuery}
                 onChange={(e) => updateSearch(e.target.value)}
-                className="header__search-input w-full pl-9 xs:pl-11 pr-8 xs:pr-10 py-1.5 xs:py-2.5 text-xs xs:text-sm rounded-xl xs:rounded-2xl border border-slate-200/80 bg-slate-50/50 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500/50 focus:bg-white transition-all shadow-sm"
+                className="header__search-input w-full pl-9 xs:pl-11 pr-8 xs:pr-10 py-1.5 xs:py-2.5 text-xs xs:text-sm rounded-xl xs:rounded-2xl border border-slate-200/80 bg-slate-50/50 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500/50 focus:bg-white transition-all duration-300 ease-in-out shadow-sm hover:shadow-md focus:shadow-lg focus:shadow-emerald-500/10"
               />
               {searchQuery && (
                 <button
@@ -56,7 +56,7 @@ export const Header = ({ onMenuClick }) => {
           {/* Premium Notifications */}
           <div className="relative">
             <button
-              className="header__icon-btn relative p-1.5 xs:p-2 sm:p-2.5 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+              className="header__icon-btn relative p-1.5 xs:p-2 sm:p-2.5 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
               title="Notifications"
             >
               <Bell className="w-4 xs:w-5 h-4 xs:h-5" />

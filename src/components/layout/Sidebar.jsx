@@ -77,14 +77,14 @@ export const Sidebar = ({ isOpen, onClose }) => {
                       to={item.path}
                       onClick={onClose}
                       className={cn(
-                        'sidebar__nav-item flex items-center justify-between px-2 xs:px-3 py-2 xs:py-2.5 rounded-xl text-[10px] xs:text-xs font-semibold transition-all duration-200 group',
+                        'sidebar__nav-item flex items-center justify-between px-2 xs:px-3 py-2 xs:py-2.5 rounded-xl text-[10px] xs:text-xs font-semibold transition-all duration-300 ease-in-out group',
                         isActive
-                          ? 'sidebar__nav-item--active bg-primary-600 text-white shadow-glow'
-                          : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-slate-100'
+                          ? 'sidebar__nav-item--active bg-primary-600 text-white shadow-glow scale-[1.02]'
+                          : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-slate-100 hover:scale-[1.02] hover:shadow-sm'
                       )}
                     >
                       <div className="flex items-center gap-2 xs:gap-2.5">
-                        <item.icon className={cn('w-3.5 xs:w-4 h-3.5 xs:h-4', isActive ? 'text-white' : 'text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300')} />
+                        <item.icon className={cn('w-4 xs:w-5 h-4 xs:h-5 transition-colors duration-300', isActive ? 'text-white' : 'text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-300')} />
                         <span className="text-[9px] xs:text-[10px] sm:text-xs">{item.label}</span>
                       </div>
                     </Link>
@@ -103,10 +103,10 @@ export const Sidebar = ({ isOpen, onClose }) => {
                     key={item.label}
                     to={item.path}
                     onClick={onClose}
-                    className="sidebar__nav-item flex items-center justify-between px-2 xs:px-3 py-2 xs:py-2.5 rounded-xl text-[10px] xs:text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-slate-100 group"
+                    className="sidebar__nav-item flex items-center justify-between px-2 xs:px-3 py-2 xs:py-2.5 rounded-xl text-[10px] xs:text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-slate-100 group transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-sm"
                   >
                     <div className="flex items-center gap-2 xs:gap-2.5">
-                      <item.icon className="w-3.5 xs:w-4 h-3.5 xs:h-4 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300" />
+                      <item.icon className="w-4 xs:w-5 h-4 xs:h-5 text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors duration-300" />
                       <span className="text-[9px] xs:text-[10px] sm:text-xs">{item.label}</span>
                     </div>
                     {item.count && (

@@ -41,37 +41,37 @@ export const Register = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex items-center justify-center p-3 xs:p-4 relative transition-colors duration-200">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex items-center justify-center p-2 xs:p-3 sm:p-4 relative transition-colors duration-200">
       <Toast toast={toast} onClose={hideToast} />
 
-      <div className="w-full max-w-md space-y-4 xs:space-y-6">
-        <div className="flex flex-col items-center justify-center text-center space-y-1.5 xs:space-y-2">
+      <div className="w-full max-w-md space-y-3 xs:space-y-4 sm:space-y-6">
+        <div className="flex flex-col items-center justify-center text-center space-y-1 xs:space-y-1.5 sm:space-y-2">
           <img 
             src="/logo.png" 
             alt="PropHub Logo" 
-            className="h-10 xs:h-12 w-auto"
+            className="h-8 xs:h-10 sm:h-12 w-auto"
           />
-          <p className="text-[10px] xs:text-xs text-slate-500 dark:text-slate-400 font-medium">
+          <p className="text-[9px] xs:text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">
             Join the platform to manage properties
           </p>
         </div>
 
         <Card glass className="shadow-2xl">
-          <CardBody className="space-y-4 xs:space-y-6 p-4 xs:p-6 sm:p-8">
+          <CardBody className="space-y-3 xs:space-y-4 sm:space-y-6 p-3 xs:p-4 sm:p-6 lg:p-8">
             <div>
-              <h2 className="text-xl xs:text-2xl font-bold text-slate-900 dark:text-slate-100 text-center">
+              <h2 className="text-lg xs:text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100 text-center">
                 Create Account
               </h2>
-              <p className="text-slate-500 dark:text-slate-400 text-[10px] xs:text-xs text-center mt-1">
+              <p className="text-slate-500 dark:text-slate-400 text-[9px] xs:text-[10px] sm:text-xs text-center mt-0.5 xs:mt-1">
                 Employee access account creation
               </p>
             </div>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 xs:space-y-4">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-2.5 xs:space-y-3 sm:space-y-4">
               <Input
                 label="Full Name"
                 placeholder="Jane Doe"
-                icon={<User className="w-3.5 xs:w-4 h-3.5 xs:h-4" />}
+                icon={<User className="w-3 xs:w-3.5 sm:w-4 h-3 xs:h-3.5 sm:h-4" />}
                 error={errors.name?.message}
                 {...register('name')}
               />
@@ -80,7 +80,7 @@ export const Register = () => {
                 label="Email Address"
                 type="email"
                 placeholder="jane@property.com"
-                icon={<Mail className="w-3.5 xs:w-4 h-3.5 xs:h-4" />}
+                icon={<Mail className="w-3 xs:w-3.5 sm:w-4 h-3 xs:h-3.5 sm:h-4" />}
                 error={errors.email?.message}
                 {...register('email')}
               />
@@ -89,7 +89,7 @@ export const Register = () => {
                 label="Password"
                 type="password"
                 placeholder="At least 6 characters"
-                icon={<Lock className="w-3.5 xs:w-4 h-3.5 xs:h-4" />}
+                icon={<Lock className="w-3 xs:w-3.5 sm:w-4 h-3 xs:h-3.5 sm:h-4" />}
                 error={errors.password?.message}
                 {...register('password')}
               />
@@ -98,7 +98,7 @@ export const Register = () => {
                 label="Confirm Password"
                 type="password"
                 placeholder="Re-enter password"
-                icon={<Lock className="w-3.5 xs:w-4 h-3.5 xs:h-4" />}
+                icon={<Lock className="w-3 xs:w-3.5 sm:w-4 h-3 xs:h-3.5 sm:h-4" />}
                 error={errors.confirmPassword?.message}
                 {...register('confirmPassword')}
               />
@@ -108,7 +108,7 @@ export const Register = () => {
               </Button>
             </form>
 
-            <p className="text-center text-[10px] xs:text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-center text-[9px] xs:text-[10px] sm:text-xs text-slate-500 dark:text-slate-400">
               Already have an account?{' '}
               <Link to="/login" className="text-primary-600 dark:text-primary-400 font-bold hover:underline">
                 Sign In
