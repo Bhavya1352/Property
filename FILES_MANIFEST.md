@@ -314,7 +314,7 @@ pnpm preview   # Preview production build
 - react-dom 18.2.0
 - react-router-dom 6.20.0
 - react-hook-form 7.48.0
-- zod 3.22.4
+- zod 4.6.6
 - lucide-react 0.294.0
 - framer-motion 10.16.16
 - clsx 2.0.0

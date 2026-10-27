@@ -18,12 +18,12 @@ export const registerSchema = z.object({
 export const propertySchema = z.object({
   title: z.string().min(3, 'Property title must be at least 3 characters').max(100, 'Property title must be less than 100 characters'),
   type: z.enum(['apartment', 'house', 'condo', 'studio', 'townhouse', 'loft'], {
-    errorMap: () => ({ message: 'Please select a property type from the dropdown' }),
+    message: 'Please select a property type from the dropdown',
   }),
   location: z.string().min(5, 'Location must be at least 5 characters (e.g., 123 Main St, City)'),
   rent: z.number().positive('Rent must be a positive number').min(100, 'Monthly rent must be at least $100'),
   status: z.enum(['available', 'occupied'], {
-    errorMap: () => ({ message: 'Please select the property availability status' }),
+    message: 'Please select the property availability status',
   }),
   description: z.string().min(10, 'Description must be at least 10 characters').max(1000, 'Description must be less than 1000 characters'),
   bedrooms: z.number().min(1, 'Property must have at least 1 bedroom').max(10, 'Property cannot have more than 10 bedrooms'),

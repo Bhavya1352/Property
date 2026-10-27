@@ -41,7 +41,7 @@ Build & Dev:
 
 Forms & Validation:
 - React Hook Form 7
-- Zod 3
+- Zod 4
 
 UI & Icons:
 - Lucide React
